@@ -4,7 +4,7 @@ export default function UserCard({ user, isLoading = !user }) {
   if (isLoading) {
     return (
       <section className="user-card">
-        <p>Loading…</p>
+        <p role="status">Loading…</p>
       </section>
     )
   }

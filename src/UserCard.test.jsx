@@ -10,7 +10,7 @@ describe('UserCard', () => {
 
   it('shows a loading status while loading', () => {
     render(<UserCard user={null} isLoading />)
-    expect(screen.getByText('Loading…')).toBeInTheDocument()
+    expect(screen.getByRole('status')).toHaveTextContent('Loading…')
     expect(screen.queryByRole('heading')).not.toBeInTheDocument()
   })
 })
