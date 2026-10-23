@@ -1,0 +1,11 @@
+.is-loading {
+  opacity: 0.5;
+}
+
+.avatar.is-loading {
+  filter: grayscale(1);
+}
+
+.user-list.is-loading li {
+  pointer-events: none;
+}
