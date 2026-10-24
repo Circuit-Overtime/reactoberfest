@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react'
 import UserCard from './UserCard.jsx'
 import UserList from './UserList.jsx'
+import { LoadingProvider } from './LoadingContext.jsx'
+import { useAsyncState } from './hooks/useAsyncState.js'
+import './index.css'
 
 const team = [
   { id: 1, name: 'Riya' },
@@ -15,17 +17,15 @@ function fetchUser() {
 }
 
 export default function App() {
-  const [user, setUser] = useState(null)
-
-  useEffect(() => {
-    fetchUser().then(setUser)
-  }, [])
+  const { data: user, isLoading } = useAsyncState(fetchUser)
 
   return (
-    <main>
-      <h1>React Kolkata</h1>
-      <UserCard user={user} />
-      <UserList users={team} />
-    </main>
+    <LoadingProvider isLoading={isLoading}>
+      <main>
+        <h1>React Kolkata</h1>
+        <UserCard user={user} />
+        <UserList users={team} />
+      </main>
+    </LoadingProvider>
   )
 }
